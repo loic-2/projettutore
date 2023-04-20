@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="pagePatient" prefHeight="679.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.PatientController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="121.0" prefWidth="1065.0" spacing="20.0" style="-fx-padding: 20px;">
+         <children>
+            <Button fx:id="ajouter" mnemonicParsing="false" onAction="#openAddPopUp" prefHeight="35.0" prefWidth="118.0" style="-fx-background-radius: 10px; -fx-background-color: #007bff;" text="Ajouter" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER_MD" size="18">
+                     <font>
+                        <Font size="45.0" />
+                     </font>
+                  </FontAwesomeIconView>
+               </graphic>
+            </Button>
+            <Button fx:id="supprimer" mnemonicParsing="false" prefHeight="35.0" prefWidth="121.0" style="-fx-background-radius: 10px; -fx-background-color: red;" text="Supprimer" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TIMES" size="18" />
+               </graphic>
+            </Button>
+            <Button fx:id="exporter" mnemonicParsing="false" prefHeight="35.0" prefWidth="121.0" style="-fx-background-radius: 10px; -fx-background-color: rgb(0,200,0);" text="Exporter" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="DOWNLOAD" size="18" />
+               </graphic>
+            </Button>
+            <BorderPane prefHeight="81.0" prefWidth="647.0">
+               <right>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <JFXTextField fx:id="recherche" alignment="BOTTOM_LEFT" labelFloat="true" prefHeight="31.0" prefWidth="225.0" promptText="Rechercher" style="-fx-padding: px;" unFocusColor="BLUE" />
+                     </children>
+                  </HBox>
+               </right>
+            </BorderPane>
+         </children>
+      </HBox>
+      <TableView prefHeight="557.0">
+         <columns>
+            <TableColumn prefWidth="299.0" text="Nom" />
+            <TableColumn minWidth="0.0" prefWidth="188.0" text="Telephone" />
+            <TableColumn minWidth="0.0" prefWidth="184.0" text="Adresse" />
+            <TableColumn minWidth="0.0" prefWidth="197.0" text="Assurance" />
+            <TableColumn editable="false" minWidth="0.0" prefWidth="196.0" resizable="false" text="Action" />
+         </columns>
+      </TableView>
+   </children>
+</VBox>

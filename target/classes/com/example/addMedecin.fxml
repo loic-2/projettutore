@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" fx:controller="com.example.controllers.AddMedecinController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="399.0" style="-fx-padding: 10px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="41.0" prefWidth="389.0">
+         <center>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="612.0" text="AJouter un medecin" textFill="#2346a4" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </center>
+         <right>
+            <FontAwesomeIconView fill="#2346a4" glyphName="TIMES" size="25" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+      <VBox alignment="CENTER" prefHeight="445.0" prefWidth="379.0" style="-fx-padding: 10px; -fx-spacing: 10px;">
+         <children>
+            <Label prefHeight="44.0" prefWidth="322.0" style="-fx-background-color: 20px;" text="Label" textFill="RED" visible="false" />
+            <MFXTextField floatingText="Nom" prefHeight="51.0" prefWidth="323.0" style="-fx-border-color: #007bff;" styleClass="text-field" />
+            <MFXTextField floatingText="Matricule" prefHeight="51.0" prefWidth="323.0" style="-fx-border-color: #007bff;" />
+            <BorderPane prefHeight="42.0" prefWidth="319.0">
+               <left>
+                  <MFXCheckbox fx:id="isSpecialiste" contentDisposition="RIGHT" disable="true" text="Specialiste" BorderPane.alignment="CENTER" />
+               </left>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </BorderPane>
+            <MFXTextField fx:id="specialiste" floatingText="Specialite" prefHeight="51.0" prefWidth="323.0" style="-fx-border-color: #007bff;" />
+            <MFXTextField floatingText="Telephone" prefHeight="51.0" prefWidth="323.0" style="-fx-border-color: #007bff;" />
+            <MFXTextField floatingText="Adresse" prefHeight="51.0" prefWidth="323.0" style="-fx-border-color: #007bff;" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 10px;">
+         <children>
+            <MFXButton prefHeight="46.0" prefWidth="160.0" rippleColor="#f52e1c" style="-fx-background-color: red; -fx-background-radius: 20px;" text="Renitialiser" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TIMES" size="18" />
+               </graphic>
+            </MFXButton>
+            <MFXButton onAction="#save" prefHeight="46.0" prefWidth="160.0" rippleColor="#15f287" style="-fx-background-color: #28a745; -fx-background-radius: 20px;" text="Enregistrer" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SAVE" size="18" />
+               </graphic>
+            </MFXButton>
+         </children>
+      </HBox>
+   </children>
+</VBox>
