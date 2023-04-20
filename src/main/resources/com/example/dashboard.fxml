@@ -25,7 +25,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox fx:id="verticalMenu" prefHeight="720.0" prefWidth="253.0" style="-fx-background-color: #1E2D5A;">
+      <VBox fx:id="verticalMenu" prefHeight="720.0" prefWidth="232.0" style="-fx-background-color: #1E2D5A;">
          <children>
             <Label alignment="TOP_CENTER" prefHeight="121.0" prefWidth="167.0" style="-fx-label-padding: 10px;" text="WELCOME" textFill="WHITE">
                <font>
@@ -265,7 +265,7 @@
                         </BorderPane>
                      </children>
                   </HBox>
-                  <TableView prefHeight="557.0">
+                  <TableView prefHeight="557.0" prefWidth="991.0">
                     <columns>
                       <TableColumn prefWidth="299.0" text="Nom" />
                       <TableColumn minWidth="0.0" prefWidth="188.0" text="Matricule" />
