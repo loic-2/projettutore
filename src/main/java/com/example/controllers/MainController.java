@@ -66,6 +66,12 @@ public class MainController {
     private Label historique;
 
     @FXML
+    private Label utilisateur;
+
+    @FXML
+    private Label consultation;
+
+    @FXML
     private Label fiche;
 
     private Node sousMenu;
@@ -89,8 +95,6 @@ public class MainController {
         sousMenu=verticalMenu.getChildren().get(3);
         sousMenu.setVisible(false);
         verticalMenu.getChildren().remove(3);
-        //sous= box.getChildren().get(2);
-        //box.getChildren().remove(2);
     }
 
     @FXML
@@ -105,7 +109,8 @@ public class MainController {
         home.setStyle("-fx-label-padding: 10px");medecins.setStyle("-fx-label-padding: 10px");
         patients.setStyle("-fx-label-padding: 10px");historique.setStyle("-fx-label-padding: 10px");
         fiche.setStyle("-fx-label-padding: 10px");specialiste.setStyle("-fx-label-padding: 10px;");
-        generaliste.setStyle("-fx-label-padding: 10px;");
+        generaliste.setStyle("-fx-label-padding: 10px;");utilisateur.setStyle("-fx-label-padding: 10px;");
+        consultation.setStyle("-fx-label-padding: 10px;");
         label.setStyle("-fx-background-color:  rgba(255, 255, 255, 0.16); -fx-text-fill: white;"+
         "-fx-border-width:  0 0 0 5px; -fx-border-color:white");
     }
@@ -114,8 +119,8 @@ public class MainController {
     private void gotoPagePatient() throws IOException{
         setPageName("Patient",patients);
         node= (Node) App.loadFXML("pagePatient");
-        rigntContainer.getChildren().remove(1);
-        rigntContainer.getChildren().add(1, node);
+        rigntContainer.getChildren().remove(0);
+        rigntContainer.getChildren().add(0, node);
     }
 
     @FXML
@@ -135,20 +140,18 @@ public class MainController {
     private void gotoPageGeneraliste() throws IOException{
         setPageName("Generalistes",generaliste);
         node= (Node) App.loadFXML("pageMedecin");
-        rigntContainer.getChildren().remove(1);
-        rigntContainer.getChildren().add(1, node);
-        AddMedecinController.getIsSpecialiste().setSelected(false);
-        AddMedecinController.getSpecialiste().setDisable(true);
+        rigntContainer.getChildren().remove(0);
+        rigntContainer.getChildren().add(0, node);
+        AddMedecinController.setspecialiste=false;
     }
 
     @FXML
     private void gotoPageSpecialiste() throws IOException{
         setPageName("Specialistes",specialiste);
         node= (Node) App.loadFXML("pageMedecin");
-        rigntContainer.getChildren().remove(1);
-        rigntContainer.getChildren().add(1, node);
-        AddMedecinController.getIsSpecialiste().setSelected(true);
-        AddMedecinController.getSpecialiste().setDisable(false);
+        rigntContainer.getChildren().remove(0);
+        rigntContainer.getChildren().add(0, node);
+        AddMedecinController.setspecialiste=true;
     }
 
     /* 
@@ -186,25 +189,37 @@ public class MainController {
     @FXML
     private void gotoPageFiche() throws IOException{
         setPageName("Fiche de Maladie",fiche);
-        node= (Node) App.loadFXML("pageFiche");
-        rigntContainer.getChildren().remove(1);
-        rigntContainer.getChildren().add(1, node);
+        changeContent("pageFiche");
     }
 
     @FXML
     private void gotoDashBoard() throws IOException{
         setPageName("Dashboard",home);
-        node= (Node) App.loadFXML("pageDashboard");
-        rigntContainer.getChildren().remove(1);
-        rigntContainer.getChildren().add(1, node);
+        changeContent("pageDashboard");
     }
 
     @FXML
     private void gotoPageHistorique() throws IOException{
         setPageName("Historique",historique);
-        node= (Node) App.loadFXML("pageHistorique");
-        rigntContainer.getChildren().remove(1);
-        rigntContainer.getChildren().add(1, node);
+        changeContent("pageHistorique");
+    }
+
+    @FXML
+    private void gotoPageConsultation() throws IOException{
+        setPageName("Consultation",consultation);
+        //changeContent("pageConsultation");
+    }
+
+    @FXML
+    private void gotoPageUtilisateur() throws IOException{
+        setPageName("Utilisateur",utilisateur);
+        changeContent("pageUtilisateur");
+    }
+
+    private void changeContent(String fileName) throws IOException{
+        node= (Node) App.loadFXML(fileName);
+        rigntContainer.getChildren().remove(0);
+        rigntContainer.getChildren().add(0, node);
     }
 
     @FXML

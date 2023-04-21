@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.MainController">
+   <children>
+      <FontAwesomeIconView fill="#5a53ee" glyphName="BARS" layoutX="6.0" layoutY="34.0" onMouseClicked="#toggle" size="40" />
+      <VBox fx:id="box" layoutX="6.0" layoutY="34.0" prefHeight="448.0" prefWidth="194.0" style="-fx-background-color: white;">
+         <children>
+            <Label onScroll="#change" prefHeight="41.0" prefWidth="207.0" text="Tableau de bord" textFill="#5a53ee">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label onMouseClicked="#toggleSous" onScroll="#change" prefHeight="41.0" prefWidth="207.0" text="Medecins" textFill="#5a53ee">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="#5a53ee" glyphName="STETHOSCOPE" text="" />
+               </graphic>
+            </Label>
+            <VBox fx:id="sousbox" prefHeight="94.0" prefWidth="194.0">
+               <children>
+                  <Label prefHeight="50.0" prefWidth="194.0" text="Specialiste" textFill="#5a53ee">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="43.0" prefWidth="194.0" text="Generaliste" textFill="#5a53ee">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+            <Label onScroll="#change" prefHeight="41.0" prefWidth="207.0" text="Patients" textFill="#5a53ee">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label onScroll="#change" prefHeight="41.0" prefWidth="207.0" text="Fiche de Maladie" textFill="#5a53ee">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label onScroll="#change" prefHeight="41.0" prefWidth="207.0" text="Historique" textFill="#5a53ee">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

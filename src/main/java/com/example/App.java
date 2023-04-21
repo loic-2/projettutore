@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -43,12 +44,13 @@ public class App extends Application {
         popUpStage = new Stage();
         Scene popUpScene= new Scene(loadFXML(fxml));
         popUpScene.setFill(Color.TRANSPARENT);
+        popUpStage.initModality(Modality.APPLICATION_MODAL);
         popUpStage.setScene(popUpScene);
         popUpStage.showAndWait();
     }
 
     public static Stage getPrimaryStage() {
-        return null;
+        return primaryStage;
     }
 
 }
