@@ -1,6 +1,7 @@
 package com.example.controllers;
 
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -83,13 +84,15 @@ public class MedecinController extends MainController{
 
     }
 
-    private void addRowToTable(String nom,String matricule,String telephone,String specialite,String adresse){
+    private void addRowToTable(String nom,String matricule,String telephone,String specialite,String adresse, int id_medecin, int id_personne){
         MedecinMap med= new MedecinMap();
         med.getMedecin().setMatricule(matricule);
         med.getMedecin().setNom(nom);
         med.getMedecin().setSpecialite(specialite);
         med.getMedecin().setTelephone(telephone);
         med.getMedecin().setAdresse(adresse);
+        med.getMedecin().setId_medecin(id_medecin);
+        med.getMedecin().setId_personne(id_personne);
         medecinMaps.add(med);
         medecin.setItems(medecinMaps);
     }
@@ -110,7 +113,13 @@ public class MedecinController extends MainController{
     }
 
     public void deletItemFromTable(MedecinMap medecinMap){
-        medecin.getItems().remove(medecinMap);
+        try {
+            CallableStatement call= Connexion.getConncetion().prepareCall("CALL deleteMedecin(?)");
+            call.setInt(1, medecinMap.getMedecin().getId_medecin());
+            call.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateTable(){
@@ -125,7 +134,8 @@ public class MedecinController extends MainController{
             ResultSet resultSet= preparedStatement.executeQuery();
             while (resultSet.next()) {
                 addRowToTable(resultSet.getString("nom"), resultSet.getString("matricule"), resultSet.getString("telephone"),
-                 isSpecialiste? resultSet.getString("domaine"):"Aucune",resultSet.getString("adresse"));
+                 isSpecialiste? resultSet.getString("domaine"):"Aucune",resultSet.getString("adresse"),resultSet.getInt("id_medecin"),
+                 resultSet.getInt("id_personne"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

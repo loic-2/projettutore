@@ -62,3 +62,63 @@ BEGIN
         (@personne_id,pgroupe,prhesus,ptaille,ppoids,pantecedent);
     COMMIT;
 END;
+
+--Procedure pour la suppression d'un Patient
+DROP PROCEDURE IF EXISTS deletePatient;
+CREATE PROCEDURE deletePatient(IN pid_patient INT)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        IF (SELECT COUNT(*) FROM `patientInfo` WHERE id_patient=pid_patient) = 0 THEN
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Aucun patient ne correspond";
+        ELSE
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Impossible de supprimer ce patient";
+        END IF;
+    END;
+    START TRANSACTION;
+        IF (SELECT COUNT(*) FROM `patientInfo` WHERE id_patient=pid_patient) = 0 THEN
+            ROLLBACK;
+            SIGNAL SQLSTATE '45000';
+        ELSE
+            SET @personne_id= (SELECT id_personne FROM `patientInfo` WHERE id_patient=pid_patient);
+            DELETE FROM `Patient` WHERE id_patient=pid_patient;
+            SET @is_generaliste= (SELECT COUNT(*) FROM `medecinGeneralisteInfo` WHERE id_personne=@personne_id);
+            SET @is_specialiste= (SELECT COUNT(*) FROM `medecinSpecialisteInfo` WHERE id_personne=@personne_id);
+            IF @is_specialiste = 0 AND @is_generaliste = 0 THEN
+                DELETE FROM `Personne` WHERE id_personne=@personne_id;
+            END IF;
+        END IF;
+    COMMIT;
+END;
+
+--Procedure pour supprimer un medecin
+DROP PROCEDURE IF EXISTS deleteMedecin;
+CREATE PROCEDURE deleteMedecin(IN pid_medecin INT)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        IF (SELECT COUNT(*) FROM `Medecin` WHERE id_medecin=pid_medecin) = 0 THEN
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Aucun medecin correspondant";
+        ELSE
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Impossible de supprimer ce medecin";
+        END IF;
+    END;
+    START TRANSACTION;
+        IF (SELECT COUNT(*) FROM `Medecin` WHERE id_medecin=pid_medecin) = 0 THEN
+            SIGNAL SQLSTATE '45000';
+        ELSE
+            IF (SELECT COUNT(*) FROM `medecinGeneralisteInfo` WHERE id_medecin=pid_medecin) > 0 THEN
+                DELETE FROM `Generaliste` WHERE id_medecin=pid_medecin;
+            ELSEIF (SELECT COUNT(*) FROM `medecinSpecialisteInfo` WHERE id_medecin=pid_medecin) > 0 THEN
+                DELETE FROM `Specialiste` WHERE id_medecin=pid_medecin;
+            END IF;
+            SET @personne_id=(SELECT id_personne FROM `Medecin` WHERE id_medecin=pid_medecin);
+            DELETE FROM `Medecin` WHERE id_medecin=pid_medecin;
+            IF (SELECT COUNT(*) FROM `patientInfo` WHERE id_personne=@personne_id) = 0 THEN
+                DELETE FROM `Personne` WHERE id_personne=@personne_id;
+            END IF;
+        END IF;
+    COMMIT;
+END;

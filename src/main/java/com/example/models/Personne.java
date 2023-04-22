@@ -8,4 +8,5 @@ public abstract class Personne {
     private String numero_assurance;
     private String adresse;
     private String telephone;
+    private int id_personne;
 }

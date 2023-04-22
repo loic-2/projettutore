@@ -49,6 +49,10 @@ public class App extends Application {
         popUpStage.showAndWait();
     }
 
+    public static void closePopUp(){
+        popUpStage.close();
+    }
+
     public static Stage getPrimaryStage() {
         return primaryStage;
     }
