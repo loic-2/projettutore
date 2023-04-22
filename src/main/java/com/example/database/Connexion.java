@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public final class Connexion {
 
     private String user="loic";
-    private String database="upharm";
+    private String database="projetTutore";
     private String host="localhost";
     private String password="1234";
     private String url="jdbc:mysql://"+host+"/"+database;

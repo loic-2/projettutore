@@ -3,6 +3,7 @@ package com.example.mapping;
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
 import de.jensd.fx.glyphs.materialicons.MaterialIconView;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import javafx.scene.Cursor;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import lombok.Data;
@@ -22,11 +23,32 @@ public class MapButton {
         view= new MFXButton("", 20, 20);
         modifier= new MFXButton("", 20, 20);
         download= new MFXButton("", 20, 20);
+        setButtonsStyle();
+        addIconsToButtons();
+        addButtonsToVbox();
+    }
 
+    private void addButtonsToVbox() {
+        buttons.getChildren().add(modifier);
+        buttons.getChildren().add(supprimer);
+        buttons.getChildren().add(view);
+        buttons.getChildren().add(download);
+        buttons.setCenterShape(true);
+    }
+
+    private void setButtonsStyle() {
         supprimer.setStyle("-fx-background-color: red;");
         modifier.setStyle("-fx-background-color:  #007bff;");
         view.setStyle("-fx-background-color: rgb(0,0,200);");
         download.setStyle("-fx-background-color:  rgb(0,200,0);");
+
+        supprimer.setCursor(Cursor.HAND);
+        modifier.setCursor(Cursor.HAND);
+        view.setCursor(Cursor.HAND);
+        download.setCursor(Cursor.HAND);
+    }
+
+    private void addIconsToButtons(){
 
         MaterialIconView delete=new MaterialIconView(MaterialIcon.DELETE, "20px");
         delete.setFill(Color.WHITE);
@@ -41,12 +63,5 @@ public class MapButton {
         modifier.setGraphic(edit);
         view.setGraphic(loupe);
         download.setGraphic(downloadIcon);
-
-
-        buttons.getChildren().add(modifier);
-        buttons.getChildren().add(supprimer);
-        buttons.getChildren().add(view);
-        buttons.getChildren().add(download);
-        buttons.setCenterShape(true);
     }
 }

@@ -87,7 +87,8 @@ public class MainController {
     private VBox pageMedecin;
 
     //ajouter un menu
-    public void initialize(){
+    @FXML
+    private void initialize(){
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTime()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
@@ -138,7 +139,8 @@ public class MainController {
 
     @FXML
     private void gotoPageGeneraliste() throws IOException{
-        setPageName("Generalistes",generaliste);
+        setPageName("Generaliste",generaliste);
+        MedecinController.isSpecialiste=false;
         node= (Node) App.loadFXML("pageMedecin");
         rigntContainer.getChildren().remove(0);
         rigntContainer.getChildren().add(0, node);
@@ -147,7 +149,8 @@ public class MainController {
 
     @FXML
     private void gotoPageSpecialiste() throws IOException{
-        setPageName("Specialistes",specialiste);
+        setPageName("Specialiste",specialiste);
+        MedecinController.isSpecialiste=true;
         node= (Node) App.loadFXML("pageMedecin");
         rigntContainer.getChildren().remove(0);
         rigntContainer.getChildren().add(0, node);
@@ -240,7 +243,7 @@ public class MainController {
     }
 
     @FXML
-    private void exporter(){
+    protected void exporter(){
         DirectoryChooser directoryChooser = new DirectoryChooser();
                 File selectedDirectory = directoryChooser.showDialog(App.getPrimaryStage());
                 if(selectedDirectory == null){

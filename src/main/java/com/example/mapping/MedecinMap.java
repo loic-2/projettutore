@@ -12,5 +12,24 @@ public class MedecinMap extends MapButton{
     public MedecinMap(){
         super();
         medecin= new Medecin();
+        addEventTobutton();
+    }
+
+    public void addEventTobutton(){
+        supprimer.setOnAction(e -> {
+            System.out.println("Supprimer medecin: "+medecin.getNom());
+        });
+
+        modifier.setOnAction(e -> {
+            System.out.println("Modifier medecin: "+medecin.getNom());
+        });
+
+        view.setOnAction(e -> {
+            System.out.println("Afficher medecin: "+medecin.getNom());
+        });
+
+        download.setOnAction(e -> {
+            System.out.println("Telecharger medecin: "+medecin.getNom());
+        });
     }
 }

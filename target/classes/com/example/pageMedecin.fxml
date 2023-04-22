@@ -27,7 +27,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MFXButton>
-            <MFXButton fx:id="supprimer" buttonType="RAISED" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: red; -fx-background-radius: 5px;" text="Supprimer" textFill="WHITE">
+            <MFXButton fx:id="supprimer" buttonType="RAISED" onAction="#supprimer" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: red; -fx-background-radius: 5px;" text="Supprimer" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
