@@ -53,7 +53,7 @@
             </MFXButton>
             <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="597.0">
                <children>
-                  <MFXTextField fx:id="rechercher" minHeight="-Infinity" onAction="#recherche" prefHeight="35.0" prefWidth="280.0" promptText="Rechercher" style="-fx-border-color: #4059a9;">
+                  <MFXTextField fx:id="rechercher" minHeight="-Infinity" onInputMethodTextChanged="#recherche" prefHeight="35.0" prefWidth="280.0" promptText="Rechercher" style="-fx-border-color: #4059a9;">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

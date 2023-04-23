@@ -1,14 +1,15 @@
 package com.example.controllers;
 
 import java.io.IOException;
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.example.App;
-import com.example.database.Connexion;
 import com.example.mapping.MedecinMap;
+import com.example.models.Medecin;
+import com.example.services.MedecinService;
+import com.example.services.implementation.MedecinServiceImpl;
+
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
 import de.jensd.fx.glyphs.materialicons.MaterialIconView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -47,6 +48,12 @@ public class MedecinController extends MainController{
     @FXML
     private MFXTextField rechercher;
 
+    private MedecinService medecinService;
+
+    public MedecinController(){
+        medecinService= new MedecinServiceImpl();
+    }
+
     @FXML
     private void initialize(){
         rechercher.setTrailingIcon(new MaterialIconView(MaterialIcon.SEARCH, "24px"));
@@ -81,19 +88,15 @@ public class MedecinController extends MainController{
 
     @FXML
     private void recherche(){
-
+        System.out.println(rechercher.getText().toString());
     }
 
-    private void addRowToTable(String nom,String matricule,String telephone,String specialite,String adresse, int id_medecin, int id_personne){
-        MedecinMap med= new MedecinMap();
-        med.getMedecin().setMatricule(matricule);
-        med.getMedecin().setNom(nom);
-        med.getMedecin().setSpecialite(specialite);
-        med.getMedecin().setTelephone(telephone);
-        med.getMedecin().setAdresse(adresse);
-        med.getMedecin().setId_medecin(id_medecin);
-        med.getMedecin().setId_personne(id_personne);
-        medecinMaps.add(med);
+    private void addRowToTable(List<Medecin> medecins){
+        for (Medecin medecin : medecins) {
+            MedecinMap med= new MedecinMap();
+            med.setMedecin(medecin);
+            medecinMaps.add(med);
+        }
         medecin.setItems(medecinMaps);
     }
 
@@ -113,32 +116,15 @@ public class MedecinController extends MainController{
     }
 
     public void deletItemFromTable(MedecinMap medecinMap){
-        try {
-            CallableStatement call= Connexion.getConncetion().prepareCall("CALL deleteMedecin(?)");
-            call.setInt(1, medecinMap.getMedecin().getId_medecin());
-            call.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            this.medecinService.deleteMedecin(medecinMap.getMedecin().getId_medecin());
     }
 
     public void updateTable(){
         medecinMaps.clear();
-        PreparedStatement preparedStatement;
         try {
-            if (isSpecialiste) {
-                preparedStatement = Connexion.getConncetion().prepareStatement("SELECT * FROM medecinSpecialisteInfo");
-            } else {
-                preparedStatement = Connexion.getConncetion().prepareStatement("SELECT * FROM medecinGeneralisteInfo");
-            }
-            ResultSet resultSet= preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                addRowToTable(resultSet.getString("nom"), resultSet.getString("matricule"), resultSet.getString("telephone"),
-                 isSpecialiste? resultSet.getString("domaine"):"Aucune",resultSet.getString("adresse"),resultSet.getInt("id_medecin"),
-                 resultSet.getInt("id_personne"));
-            }
+            addRowToTable(this.medecinService.getAllMedecin(isSpecialiste));
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     

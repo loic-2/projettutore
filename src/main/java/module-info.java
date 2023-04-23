@@ -1,7 +1,8 @@
 module com.example {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.sql;
+    //requires transitive javafx.graphics;
+    requires  java.sql;
     requires MaterialFX;
     requires de.jensd.fx.glyphs.commons;
     requires de.jensd.fx.glyphs.fontawesome;
@@ -14,6 +15,7 @@ module com.example {
     opens com.example to javafx.fxml;
     opens com.example.controllers to  javafx.fxml;
     opens com.example.mapping to javafx.base;
+    opens com.example.models to java.sql;
     exports com.example;
     exports com.example.controllers;
     exports com.example.mapping;
