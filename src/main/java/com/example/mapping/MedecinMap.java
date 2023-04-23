@@ -1,7 +1,6 @@
 package com.example.mapping;
 
 import java.sql.CallableStatement;
-import com.example.database.Connexion;
 import com.example.models.Medecin;
 import com.example.services.MedecinService;
 import com.example.services.implementation.MedecinServiceImpl;

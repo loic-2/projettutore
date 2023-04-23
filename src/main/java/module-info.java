@@ -1,8 +1,8 @@
 module com.example {
     requires javafx.controls;
     requires javafx.fxml;
-    //requires transitive javafx.graphics;
-    requires  java.sql;
+    requires transitive javafx.graphics;
+    requires transitive  java.sql;
     requires MaterialFX;
     requires de.jensd.fx.glyphs.commons;
     requires de.jensd.fx.glyphs.fontawesome;
