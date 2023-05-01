@@ -66,6 +66,8 @@ public class MedecinController extends MainController{
 
     @FXML
     private void openPopUp() throws IOException{
+        AddMedecinController.modifier=false;
+        AddMedecinController.medecin=new Medecin();
         App.popUpLaunch("addMedecin");
         updateTable();
     }

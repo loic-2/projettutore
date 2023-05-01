@@ -1,5 +1,10 @@
 package com.example.controllers;
 
+import com.example.App;
+import com.example.error.Response;
+import com.example.models.Patient;
+import com.example.services.PatientService;
+import com.example.services.implementation.PatientServiceImpl;
 import com.jfoenix.controls.JFXTextArea;
 
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
@@ -10,6 +15,8 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import lombok.Getter;
+import lombok.Setter;
 
 public class AddPatientController {
 
@@ -31,6 +38,9 @@ public class AddPatientController {
 
     @FXML
     private MFXTextField telephone;
+
+    @FXML
+    private Label title;
 
     @FXML
     private Label erreur;
@@ -60,6 +70,19 @@ public class AddPatientController {
     @FXML
     private MFXDatePicker date;
 
+    public static Boolean modifier=false;
+
+    @Getter
+    @Setter
+    private Response response;
+
+    public static Patient patient= new Patient();
+    private PatientService patientService;
+
+    public AddPatientController(){
+        patientService= new PatientServiceImpl();
+    }
+
     @FXML
     private void initialize(){
         nom.setLeadingIcon(new MaterialIconView(MaterialIcon.PERSON,"24px"));
@@ -76,22 +99,22 @@ public class AddPatientController {
         groupeO.setToggleGroup(groupe);
         rhesusNegatif.setToggleGroup(rhesus);
         rhesusPositif.setToggleGroup(rhesus);
+
+        //initialisation des champs
+        if (modifier) {
+            title.setText("Modifier le Patient");
+            nom.setText(patient.getNom());
+            numeroSecurite.setText(patient.getNumero_assurance());
+            telephone.setText(patient.getTelephone());
+            taille.setText(String.valueOf(patient.getTaille()));
+            poid.setText(String.valueOf(patient.getPoids()));
+            antecedent.setText(patient.getAntecedent());
+            adresse.setText(patient.getAdresse());
+        }
     }
 
     @FXML
     public void enregistrer(){
-        System.out.println("nom: "+nom.getText());
-        System.out.println("taille "+taille.getText());
-        if (date.getValue()!=null) {
-            System.out.println("date: "+date.getValue().toString());
-        }
-        System.out.println("antecedent: "+antecedent.getText());
-        System.out.println("poid: "+poid.getText());
-        System.out.println("numero: "+numeroSecurite.getText());
-        System.out.println("tel: "+telephone.getText());
-        System.out.println("adresse: "+adresse.getText());
-        //System.out.println("groupe: "+groupe.getSelectedToggle().getUserData().toString());
-        //System.out.println("rhesus: "+rhesus.getSelectedToggle().getUserData().toString());
 
         //verification que les champs ne sont pas vides
         if (nom.getText().isEmpty() || adresse.getText().isEmpty() || taille.getText().isEmpty() ||
@@ -121,6 +144,20 @@ public class AddPatientController {
         }
 
         erreur.setVisible(false);
+        mapFieldsToPatient();
+        
+        if (modifier) {
+            response=patientService.modifyPatient(patient);
+        } else {
+            response=patientService.addPatient(patient);
+        }
+        if (response.getCode()==200) {
+            App.closePopUp();
+            renitialiser();
+        } else {
+            erreur.setText(response.getMessage());
+            erreur.setVisible(true);
+        }
     }
 
     @FXML
@@ -133,6 +170,21 @@ public class AddPatientController {
         adresse.clear();
         telephone.clear();
         taille.clear();
+    }
+
+    public void mapFieldsToPatient(){
+        MFXRadioButton seleButton= (MFXRadioButton) groupe.getSelectedToggle();
+        MFXRadioButton selButtonRhe= (MFXRadioButton) rhesus.getSelectedToggle();
+        patient.setAdresse(adresse.getText().toString());
+        patient.setAntecedent(antecedent.getText().toString());
+        patient.setGroupeRhesus(selButtonRhe.getText().toString());
+        patient.setGroupeSanguin(seleButton.getText());
+        patient.setPoids(Double.parseDouble(poid.getText().toString()));
+        patient.setTaille(Double.parseDouble(taille.getText().toString()));
+        patient.setNumero_assurance(numeroSecurite.getText().toString());
+        patient.setTelephone(telephone.getText().toString());
+        patient.setNom(nom.getText().toString());
+
     }
     
 }

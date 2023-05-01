@@ -27,9 +27,9 @@
    <children>
       <VBox fx:id="verticalMenu" prefHeight="720.0" prefWidth="232.0" style="-fx-background-color: #1E2D5A;">
          <children>
-            <Label alignment="TOP_CENTER" prefHeight="121.0" prefWidth="167.0" style="-fx-label-padding: 10px;" text="WELCOME" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="121.0" prefWidth="167.0" style="-fx-label-padding: 10px;" text="HealthVaultion" textFill="WHITE">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Abyssinica SIL" size="20.0" />
                </font>
             </Label>
             <Label fx:id="home" onMouseClicked="#gotoDashBoard" prefHeight="53.0" prefWidth="215.0" style="-fx-label-padding: 10px; -fx-border-width: 0 0 0 5px; -fx-border-color: white; -fx-background-color: rgba(255, 255, 255, 0.16);" text="Tableau de Bord" textFill="WHITE">

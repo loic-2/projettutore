@@ -1,9 +1,8 @@
 package com.example.controllers;
-import java.sql.CallableStatement;
-import java.sql.SQLException;
-
 import com.example.App;
-import com.example.database.Connexion;
+import com.example.models.Medecin;
+import com.example.services.MedecinService;
+import com.example.services.implementation.MedecinServiceImpl;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.fxml.FXML;
@@ -31,6 +30,7 @@ public class AddMedecinController {
 
     @FXML
     private TextField matricule;
+    
 
     @FXML
     private CheckBox isSpecialiste;
@@ -50,10 +50,31 @@ public class AddMedecinController {
     @FXML
     private Label errorLabel;
 
+    private MedecinService medecinService;
+    public static Medecin medecin=new Medecin();
+    public static Boolean modifier=false;
+
+    public AddMedecinController(){
+        this.medecinService= new MedecinServiceImpl();
+    }
+
+    public AddMedecinController(Medecin medecin){
+        this.medecinService= new MedecinServiceImpl();
+    }
+
     @FXML
     void initialize() {
         isSpecialiste.setDisable(true);
         activeSpecialisteField(setspecialiste);
+        if (modifier) {
+            title.setText("Modifier le Medecin");
+            nom.setText(medecin.getNom());
+            matricule.setText(medecin.getMatricule());
+            specialiste.setText(medecin.getSpecialite());
+            telephone.setText(medecin.getTelephone());
+            adresse.setText(medecin.getAdresse());
+            numero_assurance.setText(medecin.getNumero_assurance());
+        }
     }
 
 
@@ -117,32 +138,13 @@ public class AddMedecinController {
         //Masquer le message d'erreur si tout est correcte
         errorLabel.setVisible(false);
 
-        try (// Tout est OK, on peut enregistrer le médecin
-        CallableStatement call = Connexion.getConncetion().prepareCall("CALL addMedecin(?,?,?,?,?,?,?)")) {
-            call.setString(1, nom.getText().toString());
-            call.setString(2, matricule.getText());
-            call.setString(4, adresse.getText().toString());
-            call.setString(5, telephone.getText().toString());
-            call.setString(6, numero_assurance.getText().toString());
-            call.setBoolean(7, isSpecialiste.isSelected());
-            if (isSpecialiste.isSelected()) {
-                call.setString(3, specialiste.getText().toString());
-            } else {
-                call.setString(3, null);
-            }
-            call.execute();
-        } catch (SQLException e) {
-            System.out.println("Une erreur est survenue lors de l'insertion");
-            e.printStackTrace();
+        // Tout est OK, on peut enregistrer le médecin
+        mapFieldsToMedecin();
+        if (modifier) {
+            System.out.println(medecinService.modifyMedecin(medecin));;
+        } else {
+            System.out.println(medecinService.addMedecin(medecin));;
         }
-
-        System.out.println("Nom : " + nom.getText());
-        System.out.println("Matricule : " + matricule.getText());
-        System.out.println("Spécialiste : " + isSpecialiste.isSelected());
-        System.out.println("Spécialité : " + specialiste.getText());
-        System.out.println("Téléphone : " + telephone.getText());
-        System.out.println("Adresse : " + adresse.getText());
-        System.out.println("Numero assurance : " + numero_assurance.getText());
         reset();
         App.closePopUp();
     }
@@ -154,6 +156,17 @@ public class AddMedecinController {
         } else {
             specialiste.setDisable(true);
             isSpecialiste.setSelected(false);
+        }
+    }
+
+    public void mapFieldsToMedecin(){
+        medecin.setNom(nom.getText().toString());
+        medecin.setMatricule(matricule.getText().toString());
+        medecin.setTelephone(telephone.getText().toString());
+        medecin.setAdresse(adresse.getText().toString());
+        medecin.setNumero_assurance(numero_assurance.getText().toString());
+        if (isSpecialiste.isSelected()) {
+            medecin.setSpecialite(specialiste.getText().toString());
         }
     }
 

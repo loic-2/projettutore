@@ -1,20 +1,19 @@
 package com.example.mapping;
 
-import java.sql.CallableStatement;
+import java.io.IOException;
+
+import com.example.App;
+import com.example.controllers.AddMedecinController;
 import com.example.models.Medecin;
 import com.example.services.MedecinService;
 import com.example.services.implementation.MedecinServiceImpl;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.EqualsAndHashCode.Exclude;
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class MedecinMap extends MapButton{
     private Medecin medecin;
-    
-    @Exclude
-    private CallableStatement call;
     private MedecinService medecinService;
 
     public MedecinMap(){
@@ -30,7 +29,13 @@ public class MedecinMap extends MapButton{
         });
 
         modifier.setOnAction(e -> {
-            System.out.println("Modifier medecin: "+medecin.getNom());
+            try {
+                AddMedecinController.medecin=this.getMedecin();
+                AddMedecinController.modifier=true;
+                App.popUpLaunch("addMedecin");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         });
 
         view.setOnAction(e -> {

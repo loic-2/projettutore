@@ -158,7 +158,7 @@ BEGIN
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Le matricule deja utilise";
         ELSEIF (SELECT COUNT(*) FROM `Personne` WHERE nom=pnom) > 0 THEN
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Le nom deja utilise";
-        ELSEIF (SELECT COUNT(*) FROM `Personne` WHERE numero_assurance=pnumero) THEN
+        ELSEIF (SELECT COUNT(*) FROM `Personne` WHERE numero_assurance=pnumero)>0 THEN
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Le numero d'assurance est deja utilise";
         ELSE
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT="Impossible de modifier les informations de ce medecin";
@@ -168,11 +168,11 @@ BEGIN
         IF (SELECT COUNT(*) FROM Medecin WHERE id_medecin=pid_medecin) = 0 THEN
             SIGNAL SQLSTATE '45000';
         ELSE
-            SET @personne_id=(SELECT id_personne FROM `Medecin` WHERE id_medecin=pid_medecin);
+            SET @personne_id= (SELECT id_personne FROM `Medecin` WHERE id_medecin=pid_medecin);
             IF isspecialiste = FALSE THEN
                 UPDATE `Medecin` SET matricule=pmatricule WHERE id_medecin=pid_medecin;
                 UPDATE `Personne` SET nom=pnom,adresse=padresse,telephone=ptelephone,numero_assurance=pnumero
-                    WHERE id_personne = @persone_id;
+                WHERE id_personne = @personne_id;
             ELSE
                 UPDATE `Specialiste` SET domaine=pspecialite WHERE id_medecin=pid_medecin;
                 UPDATE `Medecin` SET matricule=pmatricule WHERE id_medecin=pid_medecin;
@@ -185,7 +185,7 @@ END;
 
 --Procedure pour la modification d'un patient
 DROP PROCEDURE IF EXISTS modifyPatient;
-CREATE PROCEDURE modifyPatient(IN Pnom VARCHAR(50),IN padresse VARCHAR(50),IN ptelephone VARCHAR(50),
+CREATE PROCEDURE modifyPatient(IN pnom VARCHAR(50),IN padresse VARCHAR(50),IN ptelephone VARCHAR(50),
     IN pnumero VARCHAR(50),IN pgroupe VARCHAR(2),IN prhesus VARCHAR(10),IN pantecedent VARCHAR(255),
     IN pid_patient INT,IN ptaille DOUBLE,IN ppoids DOUBLE)
 BEGIN

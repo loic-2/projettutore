@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="121.0" prefWidth="1065.0" spacing="20.0" style="-fx-padding: 20px;">
          <children>
-            <MFXButton fx:id="ajouter1" buttonType="RAISED" onAction="#openPopUp" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #007bff; -fx-background-radius: 5px;" text="Ajouter" textFill="WHITE">
+            <MFXButton fx:id="ajouter" buttonType="RAISED" onAction="#openPopUp" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: #007bff; -fx-background-radius: 5px;" text="Ajouter" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="USER_MD" size="18">
                      <font>
@@ -27,7 +27,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MFXButton>
-            <MFXButton fx:id="supprimer1" buttonType="RAISED" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: red; -fx-background-radius: 5px;" text="Supprimer" textFill="WHITE">
+            <MFXButton fx:id="supprimer" buttonType="RAISED" onAction="#supprimer" prefHeight="35.0" prefWidth="118.0" style="-fx-background-color: red; -fx-background-radius: 5px;" text="Supprimer" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -68,13 +68,13 @@
             </HBox>
          </children>
       </HBox>
-      <TableView prefHeight="557.0">
+      <TableView fx:id="patients" prefHeight="557.0">
          <columns>
-            <TableColumn prefWidth="299.0" text="Nom" />
-            <TableColumn minWidth="0.0" prefWidth="188.0" text="Telephone" />
-            <TableColumn minWidth="0.0" prefWidth="184.0" text="Adresse" />
-            <TableColumn minWidth="0.0" prefWidth="197.0" text="Assurance" />
-            <TableColumn editable="false" minWidth="0.0" prefWidth="244.0" resizable="false" text="Action" />
+            <TableColumn fx:id="nom" prefWidth="299.0" text="Nom" />
+            <TableColumn fx:id="telephone" minWidth="0.0" prefWidth="188.0" text="Telephone" />
+            <TableColumn fx:id="adresse" minWidth="0.0" prefWidth="184.0" text="Adresse" />
+            <TableColumn fx:id="assurance" minWidth="0.0" prefWidth="197.0" text="Assurance" />
+            <TableColumn fx:id="action" editable="false" minWidth="0.0" prefWidth="244.0" resizable="false" text="Action" />
          </columns>
       </TableView>
    </children>

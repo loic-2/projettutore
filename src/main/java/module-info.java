@@ -20,4 +20,5 @@ module com.example {
     exports com.example.controllers;
     exports com.example.mapping;
     exports com.example.models;
+    exports com.example.error;
 }
