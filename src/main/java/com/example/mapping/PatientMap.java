@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.App;
 import com.example.controllers.AddPatientController;
+import com.example.controllers.ViewPatientController;
 import com.example.models.Patient;
 import com.example.services.PatientService;
 import com.example.services.implementation.PatientServiceImpl;
@@ -34,9 +35,21 @@ public class PatientMap extends MapButton{
             try {
                 App.popUpLaunch("addPatient");
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
+        });
+
+        view.setOnAction(e->{
+            try {
+                ViewPatientController.patient=this.getPatient();
+                App.popUpLaunch("viewPatient");
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+
+        download.setOnAction(e->{
+            
         });
     }
 }

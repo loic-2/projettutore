@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="pageMedecin" prefHeight="687.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="pageMedecin" fx:controller="com.example.controllers.DashboardController" prefHeight="687.0" prefWidth="1113.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" prefHeight="179.0" prefWidth="1065.0" style="-fx-spacing: 25px;">
          <children>

@@ -3,14 +3,13 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" fx:controller="com.example.controllers.ViewMedecinController" prefHeight="400.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ViewMedecinController">
    <children>
       <HBox prefHeight="124.0" prefWidth="580.0">
          <children>
@@ -28,11 +27,7 @@
                   <Label layoutX="87.0" layoutY="58.0" text="********" />
                </children>
             </Pane>
-            <ImageView fitHeight="87.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../../../Downloads/HealthVaultion.png" />
-               </image>
-            </ImageView>
+            <ImageView fitHeight="87.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true" />
             <Pane prefHeight="100.0" prefWidth="275.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="51.0" layoutY="10.0" prefHeight="16.0" prefWidth="186.0" text="Republic of Cameroon" />
@@ -134,7 +129,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="59.0" prefWidth="580.0">
          <children>
-            <MFXButton fx:id="telecharger" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #5c8dd6;" text="Telecharger" textFill="WHITE" />
+            <MFXButton onAction="#telecharger" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #5c8dd6;" text="Telecharger" textFill="WHITE" />
          </children>
       </HBox>
    </children>

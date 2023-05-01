@@ -1,0 +1,21 @@
+digraph "com.example:projettutore:jar:1.0" { 
+	"com.example:projettutore:jar:1.0" -> "de.jensd:fontawesomefx-materialicons:jar:2.2.0-9.1.2:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "com.mysql:mysql-connector-j:jar:8.0.33:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "org.projectlombok:lombok:jar:1.18.26:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "io.github.palexdev:materialfx:jar:11.14.0-EA3:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "com.dustinredmond.fxtrayicon:FXTrayIcon:jar:3.1.2:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "org.controlsfx:controlsfx:jar:11.1.1:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "de.jensd:fontawesomefx-fontawesome:jar:4.7.0-9.1.2:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "com.jfoenix:jfoenix:jar:9.0.1:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "org.openjfx:javafx-controls:jar:13:compile" ; 
+	"com.example:projettutore:jar:1.0" -> "org.openjfx:javafx-fxml:jar:13:compile" ; 
+	"de.jensd:fontawesomefx-materialicons:jar:2.2.0-9.1.2:compile" -> "de.jensd:fontawesomefx-commons:jar:9.1.2:compile" ; 
+	"com.mysql:mysql-connector-j:jar:8.0.33:compile" -> "com.google.protobuf:protobuf-java:jar:3.21.9:compile" ; 
+	"io.github.palexdev:materialfx:jar:11.14.0-EA3:compile" -> "io.github.palexdev:virtualizedfx:jar:11.2.6:compile" ; 
+	"org.openjfx:javafx-controls:jar:13:compile" -> "org.openjfx:javafx-controls:jar:linux:13:compile" ; 
+	"org.openjfx:javafx-controls:jar:13:compile" -> "org.openjfx:javafx-graphics:jar:13:compile" ; 
+	"org.openjfx:javafx-graphics:jar:13:compile" -> "org.openjfx:javafx-graphics:jar:linux:13:compile" ; 
+	"org.openjfx:javafx-graphics:jar:13:compile" -> "org.openjfx:javafx-base:jar:13:compile" ; 
+	"org.openjfx:javafx-base:jar:13:compile" -> "org.openjfx:javafx-base:jar:linux:13:compile" ; 
+	"org.openjfx:javafx-fxml:jar:13:compile" -> "org.openjfx:javafx-fxml:jar:linux:13:compile" ; 
+ } 

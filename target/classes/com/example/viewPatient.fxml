@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ViewMedecinController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ViewPatientController">
    <children>
       <HBox prefHeight="124.0" prefWidth="580.0">
          <children>
@@ -22,7 +23,8 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="42.0" prefHeight="14.0" prefWidth="117.0" text="Paix-Travail-Patrie">
                      <font>
                         <Font size="11.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                   <Label layoutX="86.0" layoutY="90.0" prefHeight="16.0" prefWidth="52.0" text="********" />
                   <Label layoutX="87.0" layoutY="58.0" text="********" />
                </children>
@@ -37,18 +39,20 @@
                   <Label alignment="CENTER" layoutX="30.0" layoutY="38.0" prefHeight="16.0" prefWidth="230.0" text="Peace-Work-Fatherland">
                      <font>
                         <Font size="10.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                   <Label alignment="CENTER" layoutX="105.0" layoutY="86.0" prefHeight="16.0" prefWidth="73.0" text="********" />
                   <Label alignment="CENTER" layoutX="106.0" layoutY="54.0" prefHeight="16.0" prefWidth="73.0" text="********" />
                </children>
             </Pane>
          </children>
       </HBox>
-      <Label alignment="CENTER" prefHeight="38.0" prefWidth="583.0" text="FICHE DE MEDECIN">
+      <Label alignment="CENTER" prefHeight="38.0" prefWidth="583.0" text="FICHE DU PATIENT">
          <font>
             <Font name="System Bold" size="17.0" />
-         </font></Label>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+         </font>
+      </Label>
+      <VBox prefHeight="343.0" prefWidth="550.0">
          <children>
             <HBox prefHeight="59.0" prefWidth="580.0">
                <children>
@@ -64,12 +68,12 @@
                   </Pane>
                   <Pane prefHeight="59.0" prefWidth="295.0">
                      <children>
-                        <Label layoutX="37.0" prefHeight="16.0" prefWidth="96.0" text="Telephone">
+                        <Label layoutX="37.0" prefHeight="16.0" prefWidth="96.0" text="Adresse">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label fx:id="telephone" layoutX="37.0" layoutY="17.0" prefHeight="23.0" prefWidth="223.0" text="Loic" />
+                        <Label fx:id="adresse" layoutX="37.0" layoutY="17.0" prefHeight="23.0" prefWidth="223.0" text="Loic" />
                      </children>
                   </Pane>
                </children>
@@ -88,12 +92,12 @@
                   </Pane>
                   <Pane prefHeight="59.0" prefWidth="291.0">
                      <children>
-                        <Label layoutX="37.0" layoutY="10.0" prefHeight="16.0" prefWidth="96.0" text="Specialite">
+                        <Label layoutX="37.0" layoutY="10.0" prefHeight="16.0" prefWidth="96.0" text="Poid">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label fx:id="specialite" layoutX="37.0" layoutY="27.0" prefHeight="23.0" prefWidth="223.0" text="Loic" />
+                        <Label fx:id="poid" layoutX="37.0" layoutY="27.0" prefHeight="23.0" prefWidth="223.0" text="Loic" />
                      </children>
                   </Pane>
                </children>
@@ -102,22 +106,60 @@
                <children>
                   <Pane prefHeight="59.0" prefWidth="295.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="10.0" prefHeight="16.0" prefWidth="174.0" text="Matricule">
+                        <Label layoutX="14.0" layoutY="10.0" prefHeight="16.0" prefWidth="174.0" text="Telephone">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label fx:id="matricule" layoutX="14.0" layoutY="27.0" prefHeight="23.0" prefWidth="252.0" text="Loic" />
+                        <Label fx:id="telephone" layoutX="14.0" layoutY="27.0" prefHeight="23.0" prefWidth="252.0" text="Loic" />
                      </children>
                   </Pane>
                   <Pane prefHeight="59.0" prefWidth="295.0">
                      <children>
-                        <Label layoutX="38.0" layoutY="10.0" prefHeight="16.0" prefWidth="96.0" text="Adresse">
+                        <Label layoutX="38.0" layoutY="10.0" prefHeight="16.0" prefWidth="96.0" text="Taille">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label fx:id="adresse" layoutX="38.0" layoutY="27.0" prefHeight="23.0" prefWidth="223.0" text="Loic" />
+                        <Label fx:id="taille" layoutX="38.0" layoutY="27.0" prefHeight="23.0" prefWidth="223.0" text="Loic" />
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox prefHeight="59.0" prefWidth="580.0">
+               <children>
+                  <Pane prefHeight="59.0" prefWidth="295.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="10.0" prefHeight="16.0" prefWidth="174.0" text="Groupe Sanguin">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="groupe_sanguin" layoutX="14.0" layoutY="27.0" prefHeight="23.0" prefWidth="252.0" text="Loic" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="59.0" prefWidth="295.0">
+                     <children>
+                        <Label layoutX="38.0" layoutY="10.0" prefHeight="16.0" prefWidth="96.0" text="Rhesus">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="rhesus" layoutX="38.0" layoutY="27.0" prefHeight="23.0" prefWidth="223.0" text="Loic" />
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <HBox prefHeight="107.0" prefWidth="550.0">
+               <children>
+                  <Pane prefHeight="107.0" prefWidth="556.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="10.0" prefHeight="16.0" prefWidth="174.0" text="Antecedent">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="antecedent" layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" wrappingWidth="522.478515625" />
                      </children>
                   </Pane>
                </children>

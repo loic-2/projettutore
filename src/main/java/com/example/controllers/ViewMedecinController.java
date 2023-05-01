@@ -2,7 +2,6 @@ package com.example.controllers;
 
 import com.example.models.Medecin;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -23,9 +22,6 @@ public class ViewMedecinController {
     private Label specialite;
 
     @FXML
-    private MFXButton telecharger;
-
-    @FXML
     private Label telephone;
 
     public static Medecin medecin= new Medecin();
@@ -41,5 +37,10 @@ public class ViewMedecinController {
         } else {
             specialite.setText(medecin.getSpecialite());
         }
+    }
+
+    @FXML
+    private void telecharger(){
+        
     }
 }
