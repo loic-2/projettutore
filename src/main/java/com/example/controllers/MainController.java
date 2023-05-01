@@ -89,6 +89,12 @@ public class MainController {
     //ajouter un menu
     @FXML
     private void initialize(){
+        setPageName("Dashboard",home);
+        try {
+            changeContent("pageDashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> updateTime()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();

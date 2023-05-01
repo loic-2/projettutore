@@ -110,6 +110,22 @@ public class AddPatientController {
             poid.setText(String.valueOf(patient.getPoids()));
             antecedent.setText(patient.getAntecedent());
             adresse.setText(patient.getAdresse());
+            groupe.getToggles().forEach(toggle -> {
+                if (toggle instanceof MFXRadioButton) {
+                    MFXRadioButton radioButton = (MFXRadioButton) toggle;
+                    if (radioButton.getText().equals(patient.getGroupeSanguin())) {
+                        groupe.selectToggle(radioButton);
+                    }
+                }
+            });
+            rhesus.getToggles().forEach(toggle -> {
+                if (toggle instanceof MFXRadioButton) {
+                    MFXRadioButton radioButton = (MFXRadioButton) toggle;
+                    if (radioButton.getText().equals(patient.getGroupeRhesus())) {
+                        rhesus.selectToggle(radioButton);
+                    }
+                }
+            });
         }
     }
 
